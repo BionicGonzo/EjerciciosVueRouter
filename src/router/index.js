@@ -1,25 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Inicio from '../views/Inicio.vue'
+import Contacto from '../views/Contacto.vue'
+import Servicios from '../views/Servicios.vue'
+import Blog from '../views/Blog.vue'
+import Comentarios from '../views/Comentarios.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    component: Inicio
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
-  }
+    path: '/contacto',
+    component: Contacto,
+    name: 'contacto' // para ruta NOMBRADA
+  },
+  {
+    path: '/servicios',
+    component: Servicios
+  },
+  {
+    path: '/blog/:entrada',
+    component: Blog,
+    children: [ // para ruta ANIDADA
+      {
+        path: 'comentarios',
+        component: Comentarios,
+        name: 'comentarios'
+      },
+    ]
+  },
+  {
+    path: '*', // para ruta INEXISTENTE o COMODÍN
+    component: NotFound
+  },
 ]
 
 const router = new VueRouter({

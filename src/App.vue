@@ -1,18 +1,23 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <!-- Ruta ESTÁTICA -->
+      <router-link to="/">Inicio</router-link> •
+      <!-- Ruta ESTÁTICA -->
+      <router-link to="/servicios">Servicios</router-link> •
+      <!-- Ruta DINÁMICA -->
+      <router-link to="/blog/1">Blog</router-link> •
+      <!-- Ruta NOMBRADA -->
+      <router-link :to="{name: 'contacto'}">Contacto</router-link>
     </nav>
-    <router-view/>
+    <img src="./assets/logo.png" alt="Vue logo">
+    <router-view></router-view>
   </div>
 </template>
 
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
@@ -24,6 +29,11 @@ nav {
 nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #42b983;
 }
 
 nav a.router-link-exact-active {
